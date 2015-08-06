@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="sys">
+
+	<query>
+		<query_cid>
+		  select cid from zy_device_cid_list
+		</query_cid>
+		<query_userId>
+		  select id from zy_members
+		</query_userId>	
+		<query_user_cid>
+		  select cid ,mid from zy_member_cid_list
+		</query_user_cid>
+	</query>
+	
+	
+	<seq>
+       <query_by_serverid>
+           select server_id as serverId,entity,current,batch,`div` from zy_serialize_service where server_id = :serverId
+       </query_by_serverid>
+       
+       <query_by_entity>
+           select server_id as serverId,entity,current,batch,`div` from zy_serialize_service where server_id = :serverId and entity = :entity
+       </query_by_entity>
+       
+       <update_seq>
+            update zy_serialize_service 
+               set current = :current 
+             where server_id = :serverId
+               and entity = :entity
+       </update_seq>
+
+    </seq>
+
+</config>

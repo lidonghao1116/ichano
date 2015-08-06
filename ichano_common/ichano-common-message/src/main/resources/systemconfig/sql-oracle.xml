@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="sys">
+
+	<query_cid_users>
+		select mid from zy_member_cid_list where cid = ? and mid > 0
+	</query_cid_users>
+
+	<query_device_by_userId>
+		select cid zy_members_session m where m.mid = ? and cid > 0
+	</query_device_by_userId>
+
+	<query_clientId_by_avsId><![CDATA[
+            select distinct(m.cid)
+              from  zy_members_session m ,zy_members_cid_list t 
+             where t.cid = ? 
+               and m.mid > 0 
+               and t.mid = m.mid 
+               and m.cid > 0
+        ]]></query_clientId_by_avsId>
+
+
+	<seq>
+		<query_by_serverid>
+			select * from t_cm_seq where serverid = :serverId
+		</query_by_serverid>
+
+		<query_by_entity>
+			select * from t_cm_seq where serverid = :serverId and
+			entity = :entity
+		</query_by_entity>
+
+		<update_seq>
+			update t_cm_seq
+			set current = :current
+			where serverid =
+			:serverId
+			and entity = :entity
+		</update_seq>
+
+
+	</seq>
+
+</config>

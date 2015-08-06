@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %c %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="DEBUG"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="../log/debug.log" />
+		<param name="encoding" value="UTF-8" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %c %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<appender name="INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="../log/info.log" />
+		<param name="encoding" value="UTF-8" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %c %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ERROR"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="../log/error.log" />
+		<param name="encoding" value="UTF-8" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %c %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="FATAL" />
+		</filter>
+	</appender>
+
+    <appender name="sql" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="../log/sql.log" />
+        <param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %c %m%n" />
+        </layout>       
+    </appender>
+    
+    <logger name="cn.ichano.notice.db.receive" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="sql" />
+    </logger>
+
+	<logger name="com.google.code" additivity="false">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="cn.ichao.api" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="org.springframework" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="com.mchange.v2" additivity="false">
+		<appender-ref ref="ERROR" />
+	</logger>
+	
+	<logger name="com.mchange.v2" additivity="false">
+        <appender-ref ref="ERROR" />
+    </logger>
+
+	<root>
+		<priority value="" />
+		<appender-ref ref="DEBUG" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="STDOUT" />
+		<!-- <appender-ref ref="DEBUddG" />-->
+	</root>
+</log4j:configuration>

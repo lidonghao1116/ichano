@@ -46,4 +46,3 @@ Temporary Items
 .project
 .classpath
 *.classes
-target/*

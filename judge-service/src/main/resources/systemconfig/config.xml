@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="sys">
+
+	<common>
+		<util>
+			<thread>
+				<!-- 中介任务线程池对象 -->
+				<poolSize>50</poolSize>
+			</thread>
+
+			<httpClient>
+				<!-- 最大等待超时时间 ms -->
+				<waitTimeout>6000</waitTimeout>
+				<!-- 连接超时时间 ms -->
+				<connctionTimeout>10000</connctionTimeout>
+
+				<!-- 读取数据超时时间 ms -->
+				<soTimeout>10000</soTimeout>
+
+				<!-- 最大连接数 -->
+				<maxTotalConn>500</maxTotalConn>
+
+				<!-- 同一站点最大连接 -->
+				<maxRouteconn>50</maxRouteconn>
+
+				<retry>3</retry>
+			</httpClient>
+		</util>
+		<db>
+			<page>
+				<size>10</size>
+			</page>
+			
+		</db>
+		<filter>
+			<encrypt>
+				<isEncrypt>true</isEncrypt>
+				<key>1234791274</key>
+			</encrypt>
+		</filter>
+		<cache>
+			<enable>true</enable>
+		</cache>
+	</common>
+
+	<notice>
+	    <protocol>socket</protocol>
+		<db>
+			<aspect>false</aspect>
+			<!-- default false, 即时调用是否为远程接口,true:直接调用远程接口,false 则从数据库走 -->
+			<remote>false</remote>
+			<url></url>
+		</db>
+	</notice>
+
+</config>
